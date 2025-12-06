@@ -12,7 +12,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/oauth-success" element={<OAuthSuccess />} />
         <Route path="/marketplace" element={<Marketplace />} />
-        
+        <Route path="" element={<Marketplace />} />
+            
       </Routes>
    
   );

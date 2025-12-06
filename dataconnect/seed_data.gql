@@ -1,0 +1,75 @@
+mutation CreateSeedData @transaction @auth(level: PUBLIC, insecureReason: "This mutation is safe to expose to the public") {
+  user_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      displayName: "demouser1",
+      email: "demouser1@example.com",
+      passwordHash: "passwordhash1",
+      userType: "developer",
+      createdAt: "2024-01-01T00:00:00Z"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440001",
+      displayName: "demouser2",
+      email: "demouser2@example.com",
+      passwordHash: "passwordhash2",
+      userType: "client",
+      createdAt: "2024-01-02T00:00:00Z"
+    }
+  ])
+  skill_insertMany(data: [
+    {
+      id: "660e8400-e29b-41d4-a716-446655440000",
+      name: "JavaScript",
+      category: "Programming",
+      description: "A popular programming language"
+    },
+    {
+      id: "660e8400-e29b-41d4-a716-446655440001",
+      name: "React",
+      category: "Frontend Framework",
+      description: "A JavaScript library for building user interfaces"
+    }
+  ])
+  userSkill_insertMany(data: [
+    {
+      userId: "550e8400-e29b-41d4-a716-446655440000",
+      skillId: "660e8400-e29b-41d4-a716-446655440000",
+      proficiencyLevel: "Expert"
+    },
+    {
+      userId: "550e8400-e29b-41d4-a716-446655440000",
+      skillId: "660e8400-e29b-41d4-a716-446655440001",
+      proficiencyLevel: "Advanced"
+    }
+  ])
+  developerProfile_insertMany(data: [
+    {
+      userId: "550e8400-e29b-41d4-a716-446655440000",
+      availability: true,
+      hourlyRate: 50.0,
+      primaryRole: "Frontend Developer",
+      yearsOfExperience: 5
+    }
+  ])
+  project_insertMany(data: [
+    {
+      clientId: "550e8400-e29b-41d4-a716-446655440001",
+      budget: 10000.0,
+      createdAt: "2024-01-05T00:00:00Z",
+      description: "A new web application",
+      status: "Open",
+      title: "New Web App"
+    }
+  ])
+  projectApplication_insertMany(data: [
+    {
+      developerId: "550e8400-e29b-41d4-a716-446655440000",
+      projectId: "770e8400-e29b-41d4-a716-446655440000", # IN_PROD:  id: "770e8400-e29b-41d4-a716-446655440000",
+      createdAt: "2024-01-06T00:00:00Z",
+      proposalText: "I am a great fit for this project",
+      proposedRate: 45.0,
+      status: "Applied"
+    }
+  ])
+}

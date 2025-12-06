@@ -1,0 +1,52 @@
+type User @table {
+  email: String!
+  passwordHash: String!
+  displayName: String!
+  userType: String!
+  createdAt: Timestamp!
+  photoUrl: String
+  bio: String
+  contactInfo: String
+}
+
+type Project @table {
+  client: User!
+  title: String!
+  description: String!
+  budget: Float!
+  status: String!
+  createdAt: Timestamp!
+  desiredSkills: [String]
+  deadline: Timestamp
+}
+
+type Skill @table {
+  name: String!
+  category: String!
+  description: String
+}
+
+type DeveloperProfile @table {
+  user: User!
+  primaryRole: String!
+  yearsOfExperience: Int!
+  portfolioUrl: String
+  hourlyRate: Float
+  availability: Boolean
+}
+
+type ProjectApplication @table {
+  project: Project!
+  developer: User!
+  proposalText: String!
+  proposedRate: Float!
+  status: String!
+  createdAt: Timestamp!
+  coverLetterUrl: String
+}
+
+type UserSkill @table(key: ["user", "skill"]) {
+  user: User!
+  skill: Skill!
+  proficiencyLevel: String
+}
