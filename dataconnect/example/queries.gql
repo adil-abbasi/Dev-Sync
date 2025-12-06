@@ -1,0 +1,30 @@
+mutation CreateSkill($category: String!, $description: String, $name: String!) @auth(level: USER) {
+  skill_insert(data: {category: $category, description: $description, name: $name})
+}
+
+query ListProjects @auth(level: USER, insecureReason: "This operation is safe to expose to all logged in users.") {
+  projects {
+    id
+    title
+    description
+    budget
+    deadline
+    status
+  }
+}
+
+mutation ApplyToProject($developerId: UUID!, $projectId: UUID!, $coverLetterUrl: String, $proposalText: String!, $proposedRate: Float!) @auth(level: USER) {
+  projectApplication_insert(data: {developerId: $developerId, projectId: $projectId, coverLetterUrl: $coverLetterUrl, proposalText: $proposalText, proposedRate: $proposedRate, status: "pending"})
+}
+
+query GetDeveloperProfile @auth(level: USER) {
+  developerProfile(key: {userId_expr: "auth.uid"}) {
+    id
+    userId
+    availability
+    hourlyRate
+    portfolioUrl
+    primaryRole
+    yearsOfExperience
+  }
+}
